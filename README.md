@@ -1,5 +1,39 @@
-# MindMancer
-Mind Mancer is an AI-driven web application that simulates a mind-reading game by guessing a character, object, or concept the user is thinking of. The primary goal of this mini-project is to create an engaging and interactive game that uses artificial intelligence to predict the user's chosen entity through a series of yes/no questions. The application leverages a decision tree algorithm to narrow down possible options based on the user’s responses, ultimately guessing the character or object the user is thinking of.​
-The game begins when the user thinks of a character or object, and the AI starts asking questions. The AI uses a pre-structured decision tree, which evolves over time as it learns from new interactions. It stores a knowledge base of different characters, objects, and their unique attributes, refining its guesses with each new game. Users also have the option to add new characters to the game, allowing the AI’s knowledge base to expand dynamically.​
-The backend of Mind Mancer is powered by Python, using machine learning libraries and decision-tree algorithms to manage the questioning process and improve over time. The frontend is developed with HTML, CSS, and JavaScript, ensuring a seamless user interface that is both intuitive and interactive. To facilitate smooth gameplay, the game is hosted on a cloud platform with a robust database to store and manage character data.​
-Mind Mancer not only showcases the practical application of AI and machine learning in entertainment but also offers users a fun and evolving experience. As the game interacts with more players, the AI continually enhances its predictive capabilities, making each game more challenging and accurate.​
+# 🧠 MindMancer — AI Mind Reading Game
+
+MindMancer is an interactive AI-based guessing game web application.
+The system tries to guess the character, object, or concept that the user is thinking about by asking a series of yes/no questions.
+
+The application uses a decision tree logic to reduce possibilities and make an intelligent guess.
+If the guess is incorrect, the user can add new characters or objects so that the system learns and improves over time.
+
+---
+
+## 🚀 Features
+
+- Interactive AI guessing game  
+- Decision tree based questioning system  
+- Dynamic and expandable knowledge base  
+- Learns from user interactions  
+- Simple and user-friendly interface  
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- HTML  
+- CSS  
+- JavaScript  
+
+### Backend
+- Node.js  
+- Express.js  
+
+### Database
+
+---
+
+⭐ This project demonstrates the practical application of Artificial Intelligence concepts like decision trees, adaptive learning, and knowledge representation in an interactive gaming environment.
+- MongoDB  
+
+---
