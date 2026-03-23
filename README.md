@@ -3,6 +3,7 @@
 MindMancer is an interactive AI-driven guessing game web application that attempts to predict the character, object, or concept a user is thinking about by asking a series of intelligent yes/no questions.
 
 The system uses decision tree logic to progressively narrow down possibilities and make accurate guesses. If the AI fails to guess correctly, users can teach the system by adding new entries, allowing the knowledge base to expand dynamically and improve future predictions.
+
 ---
 
 ## 🚀 Features
