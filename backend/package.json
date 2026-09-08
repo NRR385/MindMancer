@@ -1,0 +1,36 @@
+{
+  "name": "mind-mancer-backend",
+  "version": "2.0.0",
+  "description": "Node.js + Express + TypeScript API Gateway for Mind-Mancer",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "e2e:live": "tsx scripts/e2e-live.ts"
+  },
+  "keywords": [
+    "mind-mancer",
+    "express",
+    "typescript",
+    "mongoose"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.13.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}
