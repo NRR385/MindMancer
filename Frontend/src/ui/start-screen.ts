@@ -58,27 +58,42 @@ export function renderStartScreen(props: StartScreenProps): HTMLElement {
     props.onStartGame();
   });
 
-  // Check health asynchronously to display live connection status pill
+  // Check readiness asynchronously to display live connection status pill
   const statusPill = container.querySelector('#system-status-pill');
   apiClient
-    .checkHealth()
-    .then((health) => {
+    .checkReadiness()
+    .then((readiness) => {
       if (statusPill) {
-        const isReady = health.status === 'healthy';
-        const mlActive = health.mlService?.status === 'connected';
+        const isReady = readiness.status === 'ready' || readiness.ready;
+        const mlActive =
+          readiness.checks?.mlService?.status === 'connected' &&
+          readiness.checks?.mlService?.modelLoaded;
         statusPill.innerHTML = `
           <span class="status-indicator-dot ${isReady ? 'dot-online' : 'dot-degraded'}"></span>
-          <span class="status-indicator-text">Backend: ${health.status} | ML Engine: ${mlActive ? 'Online' : 'Fallback Mode'}</span>
+          <span class="status-indicator-text">Backend: healthy | ML Engine: ${mlActive ? 'Online' : 'Fallback Mode'}</span>
         `;
       }
     })
     .catch(() => {
-      if (statusPill) {
-        statusPill.innerHTML = `
-          <span class="status-indicator-dot dot-offline"></span>
-          <span class="status-indicator-text">Backend Offline (Ensure port 3000 is active)</span>
-        `;
-      }
+      // If readiness probe fails (e.g. 503 when ML is down), check basic backend liveness
+      apiClient
+        .checkHealth()
+        .then((health) => {
+          if (statusPill) {
+            statusPill.innerHTML = `
+              <span class="status-indicator-dot dot-degraded"></span>
+              <span class="status-indicator-text">Backend: ${health.status} | ML Engine: Fallback Mode</span>
+            `;
+          }
+        })
+        .catch(() => {
+          if (statusPill) {
+            statusPill.innerHTML = `
+              <span class="status-indicator-dot dot-offline"></span>
+              <span class="status-indicator-text">Backend Offline (Ensure port 3000 is active)</span>
+            `;
+          }
+        });
     });
 
   return container;
