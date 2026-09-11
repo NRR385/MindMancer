@@ -1,0 +1,82 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mindmancer-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mindmancer-net
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  ml-engine:
+    build:
+      context: ./ml-engine
+      dockerfile: Dockerfile
+    container_name: mindmancer-ml-engine
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/mindmancer
+      - DATABASE_NAME=mindmancer
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - mindmancer-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mindmancer-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/mindmancer
+      - ML_SERVICE_URL=http://ml-engine:8000
+      - CORS_ORIGIN=*
+      - SESSION_MAX_COUNT=5000
+      - RATE_LIMIT_ENABLED=false
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      ml-engine:
+        condition: service_healthy
+    networks:
+      - mindmancer-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:3000
+    container_name: mindmancer-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - mindmancer-net
+
+volumes:
+  mongodb_data:
+    name: mindmancer_mongodb_data
+
+networks:
+  mindmancer-net:
+    name: mindmancer_network
+    driver: bridge
