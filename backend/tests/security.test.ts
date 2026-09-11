@@ -51,12 +51,13 @@ describe('Phase 7 Security Hardening Tests', () => {
   });
 
   it('TC-SEC-03: Redacts passwords from MongoDB URIs in logs and diagnostics', () => {
-    const rawUri = 'mongodb://app_user:superSecretPassword123@cluster0.mongodb.net:27017/mindmancer';
+    // Deliberately fake credentials for unit testing URI sanitization only
+    const rawUri = 'mongodb://FAKE_USER:FAKE_PASSWORD_NOT_REAL@cluster0.example.test:27017/mindmancer';
     const sanitized = sanitizeMongoUri(rawUri);
 
-    expect(sanitized).toBe('mongodb://***:***@cluster0.mongodb.net:27017/mindmancer');
-    expect(sanitized).not.toContain('superSecretPassword123');
-    expect(sanitized).not.toContain('app_user');
+    expect(sanitized).toBe('mongodb://***:***@cluster0.example.test:27017/mindmancer');
+    expect(sanitized).not.toContain('FAKE_PASSWORD_NOT_REAL');
+    expect(sanitized).not.toContain('FAKE_USER');
   });
 
   it('TC-SEC-04: Leaves unauthenticated URIs untouched', () => {
