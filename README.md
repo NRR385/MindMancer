@@ -34,7 +34,12 @@ Prediction card presenting the oracle's deduced character, relative evidence sco
 
 ![Guess Result](docs/screenshots/guess-result.png)
 
-### 4. Continuous Knowledge Handoff & Retraining
+### 4. Knowledge Handoff
+Shows the teaching interface after Mind-Mancer makes an incorrect prediction, allowing the user to add a new character and distinguishing question.
+
+![Knowledge Handoff](docs/screenshots/teaching-handoff.png)
+
+### 5. Continuous Knowledge Handoff & Retraining
 Knowledge expansion interface confirming new character persistence and real-time Decision Tree retraining.
 
 ![Knowledge Learned](docs/screenshots/knowledge-learned.png)
