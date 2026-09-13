@@ -17,6 +17,30 @@ Mind-Mancer is an adaptive AI-driven character guessing game inspired by 20 Ques
 
 ---
 
+## 📸 Screenshots
+
+### 1. Oracle Start Screen
+The landing portal displaying real-time microservice connectivity status and game instructions.
+
+![Start Screen](docs/screenshots/start-screen.png)
+
+### 2. Adaptive Gameplay & Question Selection
+Dynamic entropy-driven feature questioning with progress tracking and 5-state fuzzy answer choices.
+
+![Gameplay](docs/screenshots/gameplay.png)
+
+### 3. Prediction & Dominant Confidence Resolution
+Prediction card presenting the oracle's deduced character, relative evidence score, and decision criteria.
+
+![Guess Result](docs/screenshots/guess-result.png)
+
+### 4. Continuous Knowledge Handoff & Retraining
+Knowledge expansion interface confirming new character persistence and real-time Decision Tree retraining.
+
+![Knowledge Learned](docs/screenshots/knowledge-learned.png)
+
+---
+
 ## 🏗️ Architecture Overview
 
 ```mermaid
