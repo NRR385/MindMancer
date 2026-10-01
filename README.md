@@ -82,7 +82,7 @@ flowchart TD
 ## 🎓 Knowledge Handoff & Learning Flow
 
 ```text
-Wrong Guess ❌ ──► Teaching Form ──► Input Validation ──► MongoDB Persistence ──► Serialized /retrain ──► Atomic Model Swap ──► Ready in Next Game
+Wrong Guess ──► Teaching Form ──► Input Validation ──► MongoDB Persistence ──► Serialized /retrain ──► Atomic Model Swap ──► Ready in Next Game
 ```
 
 When the oracle guesses incorrectly, the user submits the correct character name, a distinguishing question, and a boolean trait value. The backend persists the updates to MongoDB and queues a background retraining request. The ML service retrains the Decision Tree with concurrency locked to 1 and atomically replaces the model artifact in memory.
@@ -111,7 +111,7 @@ Mind-Mancer/
 ├── docker-compose.yml # 4-tier container orchestration configuration
 ├── .env.example       # Environment template
 ├── LICENSE            # MIT License
-└── README.md          # Project documentation
+└── README.md          # Project documentation.
 ```
 
 *(Detailed engineering documentation, worked algorithmic examples, and interview preparation notes are maintained in `Temp/documentation/DEVELOPER_GUIDE.md`.)*
@@ -193,7 +193,7 @@ Contributions, bug reports, and suggestions are welcome!
 2. Create a feature branch (`git checkout -b feature/improvement-name`).
 3. Ensure all tests pass across all three layers (`backend`, `Frontend`, `ml-engine`).
 4. Commit your changes (`git commit -m 'feat: add improvement'`).
-5. Push to the branch and open a Pull Request.
+5. Push to the branch and open a Pull Request.  
 
 ---
 
